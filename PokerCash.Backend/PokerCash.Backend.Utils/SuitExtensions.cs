@@ -2,7 +2,7 @@
 
 public static class SuitExtensions
 {
-    public static string ToRankString(this Suit suit) =>
+    public static string ToSuitString(this Suit suit) =>
         suit switch
         {
             Suit.Club => "\u2663",

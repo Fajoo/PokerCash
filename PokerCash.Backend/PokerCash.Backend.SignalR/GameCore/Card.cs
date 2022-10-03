@@ -13,5 +13,5 @@ public class Card
         Suit = suit;
     }
 
-    public override string ToString() => $"{Rank}:{Suit}";
+    public override string ToString() => $"{Rank.ToRankString()}{Suit.ToSuitString()}";
 }
