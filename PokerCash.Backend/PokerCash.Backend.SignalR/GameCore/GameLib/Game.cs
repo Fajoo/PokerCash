@@ -1,4 +1,5 @@
 ﻿using PokerCash.Backend.SignalR.GameCore.PlayerLib;
+using PokerCash.Backend.Utils;
 
 namespace PokerCash.Backend.SignalR.GameCore.GameLib;
 
@@ -33,6 +34,11 @@ public class Game : IGame
     /// </summary>
     public int Blind { get; }
 
+    /// <summary>
+    /// Current game round
+    /// </summary>
+    public Round GameRound { get; private set; } = Round.None;
+
     public Game(string name, int blind = 100)
     {
         Blind = blind;
@@ -48,16 +54,16 @@ public class Game : IGame
         {
             if (ActivePlayers.Count > 1)
             {
+                GameRound = Round.Preflop;
+
                 var newDeck = new Deck();
 
-                foreach (var player in ActivePlayers)
-                {
-                    var cards = newDeck.GetCards(2);
-                    player.HandCards = new List<Card>(cards);
-                }
+                foreach (var player in ActivePlayers) player.HandCards = new List<Card>(newDeck.GetCards(2));
+
+                await Task.Delay(100, token);
             }
 
-            await Task.Delay(100, token);
+            await Task.Delay(10, token);
         }
     }
 

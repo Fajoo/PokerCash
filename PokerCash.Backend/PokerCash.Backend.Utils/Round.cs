@@ -1,7 +1,8 @@
 ﻿namespace PokerCash.Backend.Utils;
 
-public enum Rounds
+public enum Round
 {
+    None,
     Preflop,
     Flop,
     Turn,
