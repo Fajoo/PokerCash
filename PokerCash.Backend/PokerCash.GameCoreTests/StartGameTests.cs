@@ -8,7 +8,7 @@ public class StartGameTests
     private readonly IGamesControllerService _controller = new GamesControllerService();
 
     [Fact]
-    public void StartGames_Success()
+    public void StartGetGames_Success()
     {
         var expect = GamesInitializer.GetGames().Count();
 

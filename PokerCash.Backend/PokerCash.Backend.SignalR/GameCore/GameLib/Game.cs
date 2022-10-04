@@ -39,6 +39,7 @@ public class Game : IGame
         Name = name;
     }
 
+    //!TODo logics/checks
     public async Task StartGame(CancellationToken token)
     {
         IsGameStarted = true;
@@ -58,5 +59,23 @@ public class Game : IGame
 
             await Task.Delay(100, token);
         }
+    }
+
+    //!TODo logics/result/checks
+    public void AddPlayer(Player player)
+    {
+        if(player is null || Players.Contains(player)) return;
+        Players.Add(player);
+    }
+
+    //!TODo logics/result/checks
+    public bool AddToActivePlayers(string login)
+    {
+        if (string.IsNullOrEmpty(login)) return false;
+        var player = Players.FirstOrDefault(p => p.Login == login);
+        if (player == null) return false;
+        ActivePlayers.Add(player);
+        Players.Remove(player);
+        return true;
     }
 }
