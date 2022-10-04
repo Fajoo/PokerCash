@@ -64,7 +64,7 @@ public class Game : IGame
     //!TODo logics/result/checks
     public void AddPlayer(Player player)
     {
-        if(player is null || Players.Contains(player)) return;
+        if(player is null || Players.Any(p => p.Login == player.Login)) return;
         Players.Add(player);
     }
 
