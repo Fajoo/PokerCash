@@ -21,7 +21,6 @@ public static class HandPower
 
         return Power.High;
     }
-
     private static bool OnePairCheck(List<Card> hand) => hand.GroupBy(h => h.Rank).Count(h => h.Count() == 2) == 1;
     private static bool TwoPairCheck(List<Card> hand) => hand.GroupBy(h => h.Rank).Count(h => h.Count() == 2) > 1;
     private static bool ThreeOfAKindCheck(List<Card> hand) => hand.GroupBy(h => h.Rank).Count(h => h.Count() == 3) > 0;
@@ -43,13 +42,11 @@ public static class HandPower
         var two = group.Count(t => t.Count() == 2) > 0;
         return (three && two) || threeX2;
     }
-
     private static bool FourOfAKindCheck(List<Card> hand) => hand.GroupBy(h => h.Rank).Count(h => h.Count() == 4) == 1;
     private static bool StraightFlush(List<Card> hand) => StraightCheck(hand) && FlushCheck(hand);
     private static bool RoyalFlush(List<Card> hand) =>    hand[^1].Rank == Rank.Ace 
                                                        && hand[^2].Rank == Rank.King
                                                        && hand[^3].Rank == Rank.Queen
                                                        && hand[^4].Rank == Rank.Jack
-                                                       && hand[^5].Rank == Rank.Ten
-                                                       && FlushCheck(hand);
+                                                       && hand[^5].Rank == Rank.Ten && FlushCheck(hand);
 }

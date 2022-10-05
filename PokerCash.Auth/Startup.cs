@@ -61,6 +61,7 @@ namespace PokerCash.Auth.Identity
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();

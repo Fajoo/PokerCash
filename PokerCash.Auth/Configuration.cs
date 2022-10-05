@@ -9,7 +9,7 @@ namespace PokerCash.Auth.Identity
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new("TestWebAPI", "Web API")
+                new("PokerCash.Backend.SignalR", "SignalR")
             };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -22,10 +22,10 @@ namespace PokerCash.Auth.Identity
         public static IEnumerable<ApiResource> ApiResources =>
             new List<ApiResource>
             {
-                new("TestWebAPI", "Web API", new []
+                new("PokerCash.Backend.SignalR", "SignalR", new []
                     { JwtClaimTypes.Name})
                 {
-                    Scopes = {"TestWebAPI"}
+                    Scopes = { "PokerCash.Backend.SignalR" }
                 }
             };
 
@@ -35,7 +35,7 @@ namespace PokerCash.Auth.Identity
                 new()
                 {
                     ClientId = "wpf-app",
-                    ClientName = "PokerCash.Auth Web",
+                    ClientName = "PokerCash.Console",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
                     RequirePkce = true,
@@ -56,7 +56,7 @@ namespace PokerCash.Auth.Identity
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "TestWebAPI"
+                        "PokerCash.Backend.SignalR"
                     },
                     AllowAccessTokensViaBrowser = true,
                     AccessTokenLifetime = 3600,

@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             OnMessageReceived = context =>
             {
                 var token = context.Request.Query["token"];
-                if (!string.IsNullOrWhiteSpace(token) && context.Request.Path.StartsWithSegments("/notification"))
+                if (!string.IsNullOrWhiteSpace(token) && context.Request.Path.StartsWithSegments("/game"))
                     context.Token = token;
 
                 return Task.CompletedTask;
@@ -43,7 +43,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("PokerCash.Backend.SignalRCors");
-app.MapGet("/notification", () => "Use PokerCash.Backend.SignalRR");
-app.MapHub<NotificationHub>("/notification");
+app.MapGet("/game", () => "Use PokerCash.Backend.SignalRR");
+app.MapHub<NotificationHub>("/game");
 
 app.Run();
